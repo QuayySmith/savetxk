@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SaveTXK | Active Texarkana Food Deals</title>
+<style>
+:root{--bg:#0b1020;--card:#121a33;--soft:#1c2748;--text:#f7f8ff;--muted:#aab3d6;--accent:#ffcc33;--good:#39d98a;--danger:#ff6b6b}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,#090d1b,#101c3a 55%,#201039);color:var(--text)}header{padding:34px 18px 22px;text-align:center}header h1{font-size:clamp(2.2rem,8vw,4.2rem);margin:0;letter-spacing:-2px}header p{color:var(--muted);max-width:760px;margin:10px auto 0;font-size:1.05rem}.wrap{max-width:1120px;margin:0 auto;padding:16px}.searchbar{display:flex;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:12px;border-radius:22px;backdrop-filter:blur(12px);position:sticky;top:8px;z-index:5}input,select{width:100%;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:#10182f;color:white;font-size:1rem}.tabs{display:flex;gap:10px;overflow:auto;padding:18px 0}.tab{white-space:nowrap;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:white;border-radius:999px;padding:10px 14px;cursor:pointer}.tab.active{background:var(--accent);color:#1b1400;font-weight:800}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin:10px 0 20px}.panel{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:26px;padding:22px}.panel h2{margin:0 0 8px}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:.82rem;font-weight:800}.verified{background:rgba(57,217,138,.16);color:#79f2b4}.soon{background:rgba(255,204,51,.16);color:#ffe083}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:10px;min-height:235px}.brand{font-size:1.35rem;font-weight:900}.deal{font-size:1.08rem;line-height:1.35}.meta{color:var(--muted);font-size:.92rem;line-height:1.35}.actions{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:11px 13px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block}.primary{background:var(--accent);color:#171000}.secondary{background:#243055;color:white}.code{font-family:ui-monospace,Menlo,monospace;background:#090d1b;border:1px dashed rgba(255,255,255,.2);padding:10px;border-radius:12px}.note{color:var(--muted);font-size:.9rem;line-height:1.45}.footer{padding:28px 0 50px;color:var(--muted);text-align:center}@media(max-width:850px){.hero,.grid{grid-template-columns:1fr}.searchbar{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <h1>SaveTXK</h1>
+  <p>Active food coupons, app deals, weekly specials, and local Texarkana restaurant savings — all linked to the source so people can verify before ordering.</p>
+</header>
+<main class="wrap">
+  <section class="searchbar">
+    <input id="search" placeholder="Search McDonald's, Pizza Hut, burgers, pizza, app deals..." />
+    <select id="sort"><option value="all">All deals</option><option value="app">App deals</option><option value="restaurant">Restaurant specials</option><option value="local">Local Texarkana</option><option value="thirdparty">Deal sites</option></select>
+  </section>
+  <div class="tabs" id="tabs"></div>
+  <section class="hero">
+    <div class="panel"><span class="badge verified">✓ Active source links</span><h2>Texarkana food deals people can actually check</h2><p class="note">This page does not pretend to own coupons. It sends users to official restaurant pages, apps, weekly specials, Groupon, Money Mailer, and local deal pages. Some offers are app-only or participating-location only.</p></div>
+    <div class="panel"><span class="badge soon">Updated June 24, 2026</span><h2>Rule</h2><p class="note">Always tap “Get Deal” and confirm the offer is still active before driving or ordering.</p></div>
+  </section>
+  <section class="grid" id="deals"></section>
+  <section class="panel" style="margin-top:18px"><h2>Add a local deal</h2><p class="note">Restaurants can submit a special with: business name, deal, days active, address, phone, and link/photo proof. Keep this local and updated daily.</p></section>
+  <div class="footer">SaveTXK is an independent deal finder. Trademarks belong to their owners. Offers may change, expire, or vary by location.</div>
+</main>
+<script>
+const categories = ['All','Fast Food','Pizza','Sit Down','Local','Apps','Deal Sites'];
+const deals = [
+ {brand:"Pizza Hut Texarkana, AR", cat:"Pizza", type:"restaurant", deal:"Official pizza deals and Hut Rewards offers for Texarkana, AR.", detail:"Good for checking current pizza, wings, pasta, and rewards discounts.", code:"NO CODE", url:"https://locations.pizzahut.com/ar/texarkana/pizza-deals"},
+ {brand:"Pizza Hut Coupons", cat:"Pizza", type:"restaurant", deal:"National Pizza Hut coupons and deals page.", detail:"Use this when a local Pizza Hut offer is not showing. Sign-in may reveal more rewards deals.", code:"NO CODE", url:"https://www.pizzahut.com/c/content/coupons"},
+ {brand:"McDonald's", cat:"Fast Food", type:"app", deal:"McValue® and app-exclusive deals.", detail:"Deals usually require the McDonald's app and may vary by restaurant.", code:"APP", url:"https://www.mcdonalds.com/us/en-us/deals.html"},
+ {brand:"Applebee's Texarkana", cat:"Sit Down", type:"restaurant", deal:"Lunch, dinner, and drink specials at 5110 Summerhill Road.", detail:"Applebee's says specials can be limited time, so check the current page before going.", code:"NO CODE", url:"https://restaurants.applebees.com/en-us/tx/texarkana/5110-summerhill-road-87074/specials"},
+ {brand:"Seize the Deal Texarkana", cat:"Local", type:"local", deal:"Local eVoucher deals, including restaurant vouchers.", detail:"Examples shown include discounted $25 eVouchers for local restaurants.", code:"BUY VOUCHER", url:"https://www.seizethedeal.com/cities/texarkana"},
+ {brand:"Money Mailer Texarkana", cat:"Deal Sites", type:"thirdparty", deal:"Local restaurant coupons for Texarkana ZIP 75501.", detail:"Good source for pizza, sushi, donuts, ice cream, and local savings.", code:"VARIES", url:"https://moneymailer.com/coupons/texarkana-tx-75501/restaurants"},
+ {brand:"Groupon Texarkana Restaurants", cat:"Deal Sites", type:"thirdparty", deal:"Restaurant and dining deals near Texarkana.", detail:"Groupon showed multiple restaurant/dining offers for Texarkana. Check terms before buying.", code:"VARIES", url:"https://www.groupon.com/local/texarkana-tx/restaurants"},
+ {brand:"Texarkana Restaurants Daily Specials", cat:"Local", type:"local", deal:"Facebook group for daily specials from local restaurants.", detail:"Best for fresh same-day local specials, but posts must be checked manually.", code:"FACEBOOK", url:"https://www.facebook.com/groups/468783838644592/"},
+ {brand:"McDonald's App FAQ", cat:"Apps", type:"app", deal:"How McDonald's deal QR codes work.", detail:"McDonald's says Scan at Restaurant deal QR codes last 15 minutes after selecting them.", code:"INFO", url:"https://www.mcdonalds.com/us/en-us/contact-us/help-center/deals.html"}
+];
+let current = 'All';
+const tabs = document.getElementById('tabs');
+const grid = document.getElementById('deals');
+const search = document.getElementById('search');
+const sort = document.getElementById('sort');
+categories.forEach(c=>{const b=document.createElement('button');b.className='tab'+(c==='All'?' active':'');b.textContent=c;b.onclick=()=>{current=c;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()};tabs.appendChild(b)});
+function render(){
+ const q=search.value.toLowerCase(); const t=sort.value;
+ const filtered=deals.filter(d=>(current==='All'||d.cat===current)&&(t==='all'||d.type===t)&&[d.brand,d.deal,d.detail,d.cat].join(' ').toLowerCase().includes(q));
+ grid.innerHTML=filtered.map(d=>`<article class="card"><div><span class="badge verified">source linked</span></div><div class="brand">${d.brand}</div><div class="deal">${d.deal}</div><div class="meta">${d.detail}</div><div class="code">${d.code}</div><div class="actions"><a class="btn primary" target="_blank" href="${d.url}">Get Deal</a><button class="btn secondary" onclick="navigator.clipboard.writeText('${d.code}');this.textContent='Copied!'">Copy Code</button></div></article>`).join('') || '<p class="note">No deals found. Try another search.</p>';
+}
+search.oninput=render; sort.onchange=render; render();
+</script>
+</body>
+</html>
